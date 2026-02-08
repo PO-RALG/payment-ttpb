@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\HealthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\V1\HealthAPIController;
 
-Route::get('/health', HealthController::class);
+Route::prefix('v1')->group(function () {
+    Route::get('/health', HealthAPIController::class);
+});

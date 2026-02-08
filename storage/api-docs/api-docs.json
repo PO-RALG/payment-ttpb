@@ -12,14 +12,14 @@
         }
     ],
     "paths": {
-        "/api/health": {
+        "/api/v1/health": {
             "get": {
                 "tags": [
                     "Health"
                 ],
                 "summary": "Check API availability",
                 "description": "Returns a simple heartbeat payload to confirm the API is online.",
-                "operationId": "24b74a809d1f5913ec7794d867bc24f4",
+                "operationId": "262b9389c75a2b2bbea77dcf5c59df05",
                 "responses": {
                     "200": {
                         "description": "Successful heartbeat",

@@ -49,7 +49,7 @@
     "inIndex": true,
     "inView": true
   },
- 
+
    {
     "name": "programme_name",
     "dbType": "string",
@@ -122,5 +122,18 @@
     "inForm": false,
     "inIndex": false,
     "inView": false
-  }
+  },
+    {
+        "name": "updated_by",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": true,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false,
+        "inView": false
+    }
+
 ]

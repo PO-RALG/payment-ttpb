@@ -28,3 +28,23 @@ Route::resource('setup/nationalities', App\Http\Controllers\API\Setup\Nationalit
         'update' => 'setup.nationalities.update',
         'destroy' => 'setup.nationalities.destroy'
     ]);
+
+Route::resource('setup/permissions', App\Http\Controllers\API\Setup\PermissionAPIController::class)
+    ->except(['create', 'edit'])
+    ->names([
+        'index' => 'setup.permissions.index',
+        'store' => 'setup.permissions.store',
+        'show' => 'setup.permissions.show',
+        'update' => 'setup.permissions.update',
+        'destroy' => 'setup.permissions.destroy'
+    ]);
+
+Route::resource('setup/role-permissions', App\Http\Controllers\API\Setup\RolePermissionAPIController::class)
+    ->except(['create', 'edit'])
+    ->names([
+        'index' => 'setup.rolePermissions.index',
+        'store' => 'setup.rolePermissions.store',
+        'show' => 'setup.rolePermissions.show',
+        'update' => 'setup.rolePermissions.update',
+        'destroy' => 'setup.rolePermissions.destroy'
+    ]);

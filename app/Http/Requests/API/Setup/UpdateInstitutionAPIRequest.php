@@ -25,7 +25,7 @@ class UpdateInstitutionAPIRequest extends APIRequest
     public function rules()
     {
         $rules = Institution::$rules;
-        $rules['institution_code'] = $rules['institution_code'].",".$this->route("institution");
+
         return $rules;
     }
 }

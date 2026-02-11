@@ -10,45 +10,26 @@ class Institution extends Model
      use SoftDeletes;    public $table = 'institutions';
 
     public $fillable = [
-        'name',
-        'institution_code',
-        'registration_no',
-        'tin',
-        'institution_type',
-        'region',
-        'district',
-        'ward',
-        'address',
-        'website',
-        'status',
+        'programme_code',
+        'programme_name',
+        'is_teaching_professional_program',
         'active'
     ];
 
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string',
-        'institution_code' => 'string',
-        'registration_no' => 'string',
-        'tin' => 'string',
-        'institution_type' => 'string',
-        'region' => 'string',
-        'district' => 'string',
-        'ward' => 'string',
-        'address' => 'string',
-        'website' => 'string',
-        'status' => 'string',
-        'created_by_user_id' => 'integer'
+        'programme_code' => 'string',
+        'programme_name' => 'string',
+        'is_teaching_professional_program' => 'boolean'
     ];
 
     public static array $rules = [
-        'name' => 'required',
-        'institution_code' => 'required|unique:institutions,institution_code',
-        'institution_type' => 'required',
-        'region' => 'required',
-        'website' => 'nullable|url',
-        'status' => 'required'
+
     ];
 
-
+    public function createdBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(\App\Models\users::class, 'created_by', 'id');
+    }
 
 }

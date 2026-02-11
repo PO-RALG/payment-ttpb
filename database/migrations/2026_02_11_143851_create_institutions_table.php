@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('ward');
             $table->string('address');
             $table->string('website');
-            $table->enum('status');
             $table->bigInteger('created_by_user_id');
             $table->timestamps();
             $table->softDeletes();  

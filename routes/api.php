@@ -71,3 +71,7 @@ Route::resource('admin-hierarchy-sections', \App\Http\Controllers\API\Setup\Admi
 
 Route::resource('genders', \App\Http\Controllers\API\Setup\GenderAPIController::class)
     ->except(['create', 'edit']);
+
+
+Route::resource('identity-types', \App\Http\Controllers\API\Setup\IdentityTypeAPIController::class)
+    ->except(['create', 'edit']);

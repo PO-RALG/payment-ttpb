@@ -51,3 +51,7 @@ Route::resource('setup/role-permissions', App\Http\Controllers\API\Setup\RolePer
 
 Route::resource('designations', \App\Http\Controllers\API\Setup\DesignationAPIController::class)
     ->except(['create', 'edit']);
+
+
+Route::resource('admin-hierarchies', \App\Http\Controllers\API\Setup\AdminHierarchyAPIController::class)
+    ->except(['create', 'edit']);

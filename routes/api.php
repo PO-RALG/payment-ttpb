@@ -94,3 +94,7 @@ Route::resource('organization-types', \App\Http\Controllers\API\Setup\Organizati
 
 Route::resource('organization-units', \App\Http\Controllers\API\Setup\OrganizationUnitAPIController::class)
     ->except(['create', 'edit']);
+
+
+Route::resource('registration-types', \App\Http\Controllers\API\Setup\RegistrationTypeAPIController::class)
+    ->except(['create', 'edit']);

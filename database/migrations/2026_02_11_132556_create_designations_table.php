@@ -17,9 +17,9 @@ return new class extends Migration
         Schema::create('designations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code');
-            $table->string('name');
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('name')->nullable();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
             $table->softDeletes();  
         });

@@ -83,3 +83,14 @@ Route::resource('institutions', \App\Http\Controllers\API\Setup\InstitutionAPICo
 
 Route::resource('licence-categories', \App\Http\Controllers\API\Setup\LicenceCategoryAPIController::class)
     ->except(['create', 'edit']);
+
+
+Route::resource('nationalities', App\Http\Controllers\API\NationalityAPIController::class)
+    ->except(['create', 'edit']);
+
+Route::resource('organization-types', \App\Http\Controllers\API\Setup\OrganizationTypeAPIController::class)
+    ->except(['create', 'edit']);
+
+
+Route::resource('organization-units', \App\Http\Controllers\API\Setup\OrganizationUnitAPIController::class)
+    ->except(['create', 'edit']);

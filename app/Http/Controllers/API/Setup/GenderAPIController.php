@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\API\Setup;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\CreateGenderAPIRequest;
-use App\Http\Requests\API\UpdateGenderAPIRequest;
+use App\Http\Requests\API\Setup\CreateGenderAPIRequest;
+use App\Http\Requests\API\Setup\UpdateGenderAPIRequest;
 use App\Models\Setup\Gender;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

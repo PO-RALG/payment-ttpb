@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\API;
+namespace App\Http\Requests\API\Setup;
 
 use App\Common\Requests\APIRequest;
 use App\Models\Setup\Gender;

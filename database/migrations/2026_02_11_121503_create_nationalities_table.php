@@ -14,16 +14,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('nationalities', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 100);
-            $table->string('code', 100);
-            $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
-            $table->boolean('active')->default(true);
+            $table->string('code');
+            $table->string('iso3_code');
+            $table->string('phone_code');
+            $table->string('name');
+            $table->boolean('is_active');
+            $table->string('created_by');
+            $table->string('updated_by');
             $table->timestamps();
             $table->softDeletes();  
-
         });
     }
 
@@ -34,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::drop('roles');
+        Schema::drop('nationalities');
     }
 };

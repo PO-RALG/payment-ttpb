@@ -18,3 +18,13 @@ Route::resource('setup/roles', App\Http\Controllers\API\Setup\RoleAPIController:
         'update' => 'setup.roles.update',
         'destroy' => 'setup.roles.destroy'
     ]);
+
+Route::resource('setup/nationalities', App\Http\Controllers\API\Setup\NationalityAPIController::class)
+    ->except(['create', 'edit'])
+    ->names([
+        'index' => 'setup.nationalities.index',
+        'store' => 'setup.nationalities.store',
+        'show' => 'setup.nationalities.show',
+        'update' => 'setup.nationalities.update',
+        'destroy' => 'setup.nationalities.destroy'
+    ]);

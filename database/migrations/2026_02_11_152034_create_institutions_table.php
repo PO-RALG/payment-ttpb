@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Spatie\Permission\Models\Permission;
 
 return new class extends Migration
 {
@@ -16,12 +15,23 @@ return new class extends Migration
     {
         Schema::create('institutions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('programme_code');
+
+            $table->string('programme_code')->unique();
             $table->string('programme_name');
-            $table->boolean('is_teaching_professional_program');
-            $table->timestamp('updated_by');
+
+            $table->boolean('is_teaching_professional_program')
+                ->default(false);
+
+            // audit fields
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+
             $table->timestamps();
-            $table->softDeletes();  
+            $table->softDeletes();
+
+            // optional foreign keys (recommended)
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
         });
     }
 
@@ -32,6 +42,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::drop('institutions');
+        Schema::dropIfExists('institutions');
     }
 };

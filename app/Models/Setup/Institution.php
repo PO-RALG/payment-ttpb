@@ -4,32 +4,45 @@ namespace App\Models\Setup;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\User;
 
 class Institution extends Model
 {
-     use SoftDeletes;    public $table = 'institutions';
+    use SoftDeletes;
 
-    public $fillable = [
+    protected $table = 'institutions';
+
+    protected $fillable = [
         'programme_code',
         'programme_name',
         'is_teaching_professional_program',
-        'active'
+        'created_by',
+        'updated_by',
     ];
 
     protected $casts = [
         'id' => 'integer',
         'programme_code' => 'string',
         'programme_name' => 'string',
-        'is_teaching_professional_program' => 'boolean'
+        'is_teaching_professional_program' => 'boolean',
+        'created_by' => 'integer',
+        'updated_by' => 'integer',
     ];
 
-    public static array $rules = [
-
-    ];
-
-    public function createdBy(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    /**
+     * User who created the record
+     */
+    public function createdBy(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\users::class, 'created_by', 'id');
+        return $this->belongsTo(User::class, 'created_by');
     }
 
+    /**
+     * User who last updated the record
+     */
+    public function updatedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
 }

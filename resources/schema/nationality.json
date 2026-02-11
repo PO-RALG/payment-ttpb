@@ -25,9 +25,48 @@
 		"inIndex": false,
 		"inView": false
 	},
+	
+	{
+		"name": "iso3_code",
+		"dbType": "string",
+		"htmlType": "",
+		"validations": "required",
+		"searchable": true,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+	
+	{
+		"name": "phone_code",
+		"dbType": "string",
+		"htmlType": "",
+		"validations": "required",
+		"searchable": true,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
 	{
 		"name": "name",
 		"dbType": "string",
+		"htmlType": "",
+		"validations": "required",
+		"searchable": true,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+
+	{
+		"name": "is_active",
+		"dbType": "boolean",
 		"htmlType": "",
 		"validations": "required",
 		"searchable": true,

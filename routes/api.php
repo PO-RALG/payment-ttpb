@@ -79,3 +79,7 @@ Route::resource('identity-types', \App\Http\Controllers\API\Setup\IdentityTypeAP
 
 Route::resource('institutions', \App\Http\Controllers\API\Setup\InstitutionAPIController::class)
     ->except(['create', 'edit']);
+
+
+Route::resource('licence-categories', \App\Http\Controllers\API\Setup\LicenceCategoryAPIController::class)
+    ->except(['create', 'edit']);

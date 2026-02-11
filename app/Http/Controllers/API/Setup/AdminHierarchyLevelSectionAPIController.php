@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\API\Setup;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\CreateAdminHierarchyLevelSectionAPIRequest;
-use App\Http\Requests\API\UpdateAdminHierarchyLevelSectionAPIRequest;
+use App\Http\Requests\API\Setup\CreateAdminHierarchyLevelSectionAPIRequest;
+use App\Http\Requests\API\Setup\UpdateAdminHierarchyLevelSectionAPIRequest;
 use App\Models\Setup\AdminHierarchyLevelSection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

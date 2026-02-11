@@ -59,3 +59,11 @@ Route::resource('admin-hierarchies', \App\Http\Controllers\API\Setup\AdminHierar
 
 Route::resource('admin-hierarchy-level-sections', \App\Http\Controllers\API\Setup\AdminHierarchyLevelSectionAPIController::class)
     ->except(['create', 'edit']);
+
+
+Route::resource('admin-hierarchy-levels', \App\Http\Controllers\API\Setup\AdminHierarchyLevelAPIController::class)
+    ->except(['create', 'edit']);
+
+
+Route::resource('admin-hierarchy-sections', \App\Http\Controllers\API\Setup\AdminHierarchySectionAPIController::class)
+    ->except(['create', 'edit']);

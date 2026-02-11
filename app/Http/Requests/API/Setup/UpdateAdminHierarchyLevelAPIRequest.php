@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\API;
+namespace App\Http\Requests\API\Setup;
 
 use App\Common\Requests\APIRequest;
-use App\Models\Setup\AdminHierarchy;
+use App\Models\Setup\AdminHierarchyLevel;
 
-class UpdateAdminHierarchyAPIRequest extends APIRequest
+class UpdateAdminHierarchyLevelAPIRequest extends APIRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class UpdateAdminHierarchyAPIRequest extends APIRequest
      */
     public function rules()
     {
-        $rules = AdminHierarchy::$rules;
-        $rules['name'] = $rules['name'].",".$this->route("admin_hierarchy");$rules['code'] = $rules['code'].",".$this->route("admin_hierarchy");
+        $rules = AdminHierarchyLevel::$rules;
+        $rules['code'] = $rules['code'].",".$this->route("admin_hierarchy_level");$rules['name'] = $rules['name'].",".$this->route("admin_hierarchy_level");
         return $rules;
     }
 }

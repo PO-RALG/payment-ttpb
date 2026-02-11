@@ -26,7 +26,7 @@ class AdminHierarchyLevelSection extends Model
 
     public function adminHierarchyLevel(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\AdminHierarchyLevel::class, 'admin_hierarchy_level_id', 'id');
+        return $this->belongsTo(\App\Models\Setup\AdminHierarchyLevel::class, 'admin_hierarchy_level_id', 'id');
     }
 
     public function section(): \Illuminate\Database\Eloquent\Relations\BelongsTo

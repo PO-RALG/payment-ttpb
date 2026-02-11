@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\API;
+namespace App\Http\Requests\API\Setup;
 
 use App\Common\Requests\APIRequest;
-use App\Models\Setup\AdminHierarchy;
+use App\Models\Setup\AdminHierarchyLevel;
 
-class CreateAdminHierarchyAPIRequest extends APIRequest
+class CreateAdminHierarchyLevelAPIRequest extends APIRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,6 @@ class CreateAdminHierarchyAPIRequest extends APIRequest
      */
     public function rules()
     {
-        return AdminHierarchy::$rules;
+        return AdminHierarchyLevel::$rules;
     }
 }

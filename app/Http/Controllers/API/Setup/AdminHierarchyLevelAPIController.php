@@ -3,25 +3,25 @@
 namespace App\Http\Controllers\API\Setup;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\Setup\CreateAdminHierarchyAPIRequest;
-use App\Http\Requests\API\Setup\UpdateAdminHierarchyAPIRequest;
-use App\Models\Setup\AdminHierarchy;
+use App\Http\Requests\API\Setup\CreateAdminHierarchyLevelAPIRequest;
+use App\Http\Requests\API\Setup\UpdateAdminHierarchyLevelAPIRequest;
+use App\Models\Setup\AdminHierarchyLevel;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Class AdminHierarchyAPIController
+ * Class AdminHierarchyLevelAPIController
  */
-class AdminHierarchyAPIController extends Controller
+class AdminHierarchyLevelAPIController extends Controller
 {
     /**
-     * Display a listing of the AdminHierarchies.
-     * GET|HEAD /admin-hierarchies
+     * Display a listing of the AdminHierarchyLevels.
+     * GET|HEAD /admin-hierarchy-levels
      */
     public function index(Request $request): JsonResponse
     {
-        $model = new AdminHierarchy();
+        $model = new AdminHierarchyLevel();
         $query = $model->newQuery();
         $columns = Schema::getColumnListing($model->getTable());
 
@@ -54,111 +54,111 @@ class AdminHierarchyAPIController extends Controller
         if ($perPage <= 0) {
             $perPage = 15;
         }
-        $adminHierarchies = $query->paginate($perPage)->appends($request->query());
+        $adminHierarchyLevels = $query->paginate($perPage)->appends($request->query());
                 return response()->json([
             'success' => true,
-            'data' => $adminHierarchies->items(),
+            'data' => $adminHierarchyLevels->items(),
             'meta' => [
-                'current_page' => $adminHierarchies->currentPage(),
-                'per_page' => $adminHierarchies->perPage(),
-                'total' => $adminHierarchies->total(),
-                'last_page' => $adminHierarchies->lastPage(),
+                'current_page' => $adminHierarchyLevels->currentPage(),
+                'per_page' => $adminHierarchyLevels->perPage(),
+                'total' => $adminHierarchyLevels->total(),
+                'last_page' => $adminHierarchyLevels->lastPage(),
             ],
             'message' => 'Testes retrieved successfully'
         ]);
             }
 
     /**
-     * Store a newly created AdminHierarchy in storage.
-     * POST /admin-hierarchies
+     * Store a newly created AdminHierarchyLevel in storage.
+     * POST /admin-hierarchy-levels
      */
-    public function store(CreateAdminHierarchyAPIRequest $request): JsonResponse
+    public function store(CreateAdminHierarchyLevelAPIRequest $request): JsonResponse
     {
         $input = $request->all();
 
-        /** @var AdminHierarchy $adminHierarchy */
-        $adminHierarchy = AdminHierarchy::create($input);
+        /** @var AdminHierarchyLevel $adminHierarchyLevel */
+        $adminHierarchyLevel = AdminHierarchyLevel::create($input);
 
                 return response()->json([
             'success' => true,
-            'data' => $adminHierarchy,
-            'message' => 'Admin Hierarchy saved successfully'
+            'data' => $adminHierarchyLevel,
+            'message' => 'Admin Hierarchy Level saved successfully'
         ]);
             }
 
     /**
-     * Display the specified AdminHierarchy.
-     * GET|HEAD /admin-hierarchies/{id}
+     * Display the specified AdminHierarchyLevel.
+     * GET|HEAD /admin-hierarchy-levels/{id}
      */
     public function show($id): JsonResponse
     {
-        /** @var AdminHierarchy $adminHierarchy */
-        $adminHierarchy = AdminHierarchy::find($id);
+        /** @var AdminHierarchyLevel $adminHierarchyLevel */
+        $adminHierarchyLevel = AdminHierarchyLevel::find($id);
 
-        if (empty($adminHierarchy)) {
+        if (empty($adminHierarchyLevel)) {
                         return response()->json([
                 'success' => false,
-                'message' => 'Admin Hierarchy not found'
+                'message' => 'Admin Hierarchy Level not found'
             ],404);
                     }
 
                 return response()->json([
             'success' => true,
-            'data' => $adminHierarchy,
-            'message' => 'Admin Hierarchy retrieved successfully'
+            'data' => $adminHierarchyLevel,
+            'message' => 'Admin Hierarchy Level retrieved successfully'
         ]);
             }
 
     /**
-     * Update the specified AdminHierarchy in storage.
-     * PUT/PATCH /admin-hierarchies/{id}
+     * Update the specified AdminHierarchyLevel in storage.
+     * PUT/PATCH /admin-hierarchy-levels/{id}
      */
-    public function update($id, UpdateAdminHierarchyAPIRequest $request): JsonResponse
+    public function update($id, UpdateAdminHierarchyLevelAPIRequest $request): JsonResponse
     {
-        /** @var AdminHierarchy $adminHierarchy */
-        $adminHierarchy = AdminHierarchy::find($id);
+        /** @var AdminHierarchyLevel $adminHierarchyLevel */
+        $adminHierarchyLevel = AdminHierarchyLevel::find($id);
 
-        if (empty($adminHierarchy)) {
+        if (empty($adminHierarchyLevel)) {
                         return response()->json([
                 'success' => false,
-                'message' => 'Admin Hierarchy not found'
+                'message' => 'Admin Hierarchy Level not found'
             ],404);
                     }
 
-        $adminHierarchy->fill($request->all());
-        $adminHierarchy->save();
+        $adminHierarchyLevel->fill($request->all());
+        $adminHierarchyLevel->save();
 
                 return response()->json([
             'success' => true,
-            'data' => $adminHierarchy,
-            'message' => 'AdminHierarchy updated successfully'
+            'data' => $adminHierarchyLevel,
+            'message' => 'AdminHierarchyLevel updated successfully'
         ]);
             }
 
     /**
-     * Remove the specified AdminHierarchy from storage.
-     * DELETE /admin-hierarchies/{id}
+     * Remove the specified AdminHierarchyLevel from storage.
+     * DELETE /admin-hierarchy-levels/{id}
      *
      * @throws \Exception
      */
     public function destroy($id): JsonResponse
     {
-        /** @var AdminHierarchy $adminHierarchy */
-        $adminHierarchy = AdminHierarchy::find($id);
+        /** @var AdminHierarchyLevel $adminHierarchyLevel */
+        $adminHierarchyLevel = AdminHierarchyLevel::find($id);
 
-        if (empty($adminHierarchy)) {
+        if (empty($adminHierarchyLevel)) {
                         return response()->json([
                 'success' => false,
-                'message' => 'Admin Hierarchy not found'
+                'message' => 'Admin Hierarchy Level not found'
             ],404);
                     }
 
-        $adminHierarchy->delete();
+        $adminHierarchyLevel->delete();
 
                 return response()->json([
             'success' => true,
             'data' => $id,
-            'message' => 'Admin Hierarchy deleted successfully'
+            'message' => 'Admin Hierarchy Level deleted successfully'
         ]);
             }
 }

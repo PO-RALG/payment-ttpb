@@ -75,3 +75,7 @@ Route::resource('genders', \App\Http\Controllers\API\Setup\GenderAPIController::
 
 Route::resource('identity-types', \App\Http\Controllers\API\Setup\IdentityTypeAPIController::class)
     ->except(['create', 'edit']);
+
+
+Route::resource('institutions', \App\Http\Controllers\API\Setup\InstitutionAPIController::class)
+    ->except(['create', 'edit']);

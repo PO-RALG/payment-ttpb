@@ -31,17 +31,17 @@ class UserRole extends Model
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\users::class, 'user_id', 'id');
+        return $this->belongsTo(\App\Models\User::class, 'user_id', 'id');
     }
 
     public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\roles::class, 'role_id', 'id');
+        return $this->belongsTo(\App\Models\Setup\Role::class, 'role_id', 'id');
     }
 
     public function assignedByUser(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\users::class, 'assigned_by_user_id', 'id');
+        return $this->belongsTo(\App\Models\User::class, 'assigned_by_user_id', 'id');
     }
 
 }

@@ -40,12 +40,12 @@ class UserIdentifier extends Model
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\users::class, 'user_id', 'id');
+        return $this->belongsTo(\App\Models\User::class, 'user_id', 'id');
     }
 
     public function identityType(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\identity_types::class, 'identity_type_id', 'id');
+        return $this->belongsTo(\App\Models\Setup\IdentityType::class, 'identity_type_id', 'id');
     }
 
 }

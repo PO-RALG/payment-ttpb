@@ -24,17 +24,17 @@ class RolePermission extends Model
     ];
 
     public static array $rules = [
-        
+
     ];
 
     public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\Setup\Roles::class, 'role_id', 'id');
+        return $this->belongsTo(\App\Models\Setup\Role::class, 'role_id', 'id');
     }
 
     public function permission(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\Setup\Permissions::class, 'permission_id', 'id');
+        return $this->belongsTo(\App\Models\Setup\Permission::class, 'permission_id', 'id');
     }
 
 }

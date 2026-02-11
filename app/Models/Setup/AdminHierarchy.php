@@ -29,7 +29,7 @@ class AdminHierarchy extends Model
 
     public function parent(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\AdminHierarchy::class, 'parent_id', 'id');
+        return $this->belongsTo(\App\Models\Setup\AdminHierarchy::class, 'parent_id', 'id');
     }
 
     public function adminHierarchyPosition(): \Illuminate\Database\Eloquent\Relations\BelongsTo

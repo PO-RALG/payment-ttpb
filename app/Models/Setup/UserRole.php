@@ -2,46 +2,49 @@
 
 namespace App\Models\Setup;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserRole extends Model
 {
-     use SoftDeletes;    public $table = 'user_roles';
+    use SoftDeletes;
 
-    public $fillable = [
-        'id',
+    protected $table = 'user_roles';
+
+    protected $fillable = [
+        'user_id',
+        'role_id',
+        'assigned_by_user_id',
         'assigned_at',
-        'created_at',
-        'updated_at',
+        'active',
         'created_by',
         'updated_by',
-        'active'
     ];
 
     protected $casts = [
-        'id' => 'integer',
-        'created_by' => 'string',
-        'updated_by' => 'string'
+        'user_id' => 'integer',
+        'role_id' => 'integer',
+        'assigned_by_user_id' => 'integer',
+        'assigned_at' => 'datetime',
+        'active' => 'boolean',
     ];
 
-    public static array $rules = [
+    public static array $rules = [];
 
-    ];
-
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\users::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
 
-    public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function role(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\roles::class, 'role_id', 'id');
+        return $this->belongsTo(Role::class);
     }
 
-    public function assignedByUser(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function assignedByUser(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\users::class, 'assigned_by_user_id', 'id');
+        return $this->belongsTo(User::class, 'assigned_by_user_id');
     }
-
 }

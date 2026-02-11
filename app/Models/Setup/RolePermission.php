@@ -3,38 +3,38 @@
 namespace App\Models\Setup;
 
 use Illuminate\Database\Eloquent\Model;
- use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class RolePermission extends Model
 {
-     use SoftDeletes;    public $table = 'role_permissions';
+    use SoftDeletes;
 
-    public $fillable = [
-        'id',
-        'created_at',
-        'updated_at',
+    protected $table = 'role_permissions';
+
+    protected $fillable = [
+        'role_id',
+        'permission_id',
+        'active',
         'created_by',
         'updated_by',
-        'active'
     ];
 
     protected $casts = [
-        'id' => 'integer',
-        'created_by' => 'string',
-        'updated_by' => 'string'
+        'role_id' => 'integer',
+        'permission_id' => 'integer',
+        'active' => 'boolean',
     ];
 
-    public static array $rules = [
-        
-    ];
+    public static array $rules = [];
 
-    public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function role(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Setup\Roles::class, 'role_id', 'id');
+        return $this->belongsTo(Role::class);
     }
 
-    public function permission(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function permission(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Setup\Permissions::class, 'permission_id', 'id');
+        return $this->belongsTo(Permission::class);
     }
-
 }

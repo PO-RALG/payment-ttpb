@@ -1,10 +1,17 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\V1\HealthAPIController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
     Route::get('/health', HealthAPIController::class);
+});
+
+Route::prefix('auth')->group(function () {
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 });
 
 

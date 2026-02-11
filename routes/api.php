@@ -55,3 +55,7 @@ Route::resource('designations', \App\Http\Controllers\API\Setup\DesignationAPICo
 
 Route::resource('admin-hierarchies', \App\Http\Controllers\API\Setup\AdminHierarchyAPIController::class)
     ->except(['create', 'edit']);
+
+
+Route::resource('admin-hierarchy-level-sections', \App\Http\Controllers\API\Setup\AdminHierarchyLevelSectionAPIController::class)
+    ->except(['create', 'edit']);

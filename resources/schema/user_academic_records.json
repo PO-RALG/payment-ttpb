@@ -1,0 +1,126 @@
+[
+  {
+    "name": "id",
+    "dbType": "increments",
+    "htmlType": "",
+    "validations": "",
+    "searchable": true,
+    "fillable": false,
+    "primary": true,
+    "inForm": false,
+    "inIndex": false,
+    "inView": false
+  },
+
+  {
+    "name": "user_id",
+    "dbType": "string",
+    "htmlType": "text",
+    "validations": "required|unique:users,id",
+    "searchable": true,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": true,
+    "inView": true
+  },
+    {
+		"name": "institution_id",
+		"dbType": "integer:unsigned:foreign,institutions,id",
+    "relation": "mt1,institutions,institution_id,id",
+		"htmlType": "",
+		"validations": "",
+		"searchable": false,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+    {
+    "name": "level_of education",
+    "dbType": "string",
+    "htmlType": "text",
+    "validations": "required",
+    "searchable": true,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": true,
+    "inView": true
+  },
+ 
+   {
+    "name": "programme_name",
+    "dbType": "string",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": true,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false,
+    "inView": true
+  },
+  {
+    "name": "graduation_year",
+    "dbType": "string",
+    "htmlType": "text",
+    "validations": "",
+    "searchable": true,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false,
+    "inView": true
+  },
+    {
+    "name": "is_teaching_professional",
+    "dbType": "boolean",
+    "htmlType": "",
+    "validations": "",
+    "searchable": true,
+    "fillable": true,
+    "primary": false,
+    "inForm": true,
+    "inIndex": false,
+    "inView": true
+    },
+    {
+    "name": "created_at",
+    "dbType": "timestamp",
+    "htmlType": "",
+    "validations": "",
+    "searchable": false,
+    "fillable": false,
+    "primary": false,
+    "inForm": false,
+    "inIndex": false,
+    "inView": false
+    },
+      {
+    "name": "created_by",
+    "dbType": "integer:unsigned:foreign,users,id",
+    "relation": "mt1,users,created_by,id",
+    "htmlType": "",
+    "validations": "",
+    "searchable": true,
+    "fillable": false,
+    "primary": false,
+    "inForm": false,
+    "inIndex": false,
+    "inView": true
+  },
+  {
+    "name": "updated_at",
+    "dbType": "timestamp",
+    "htmlType": "",
+    "validations": "",
+    "searchable": true,
+    "fillable": false,
+    "primary": false,
+    "inForm": false,
+    "inIndex": false,
+    "inView": false
+  }
+]

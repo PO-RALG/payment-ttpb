@@ -1,0 +1,38 @@
+[
+	{
+		"name": "id",
+		"dbType": "increments",
+		"htmlType": "",
+		"validations": "",
+		"searchable": false,
+		"fillable": true,
+		"primary": true,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+	{
+		"name": "section_id",
+		"dbType": "bigInteger:unsigned:foreign,sections,id",
+		"htmlType": "",
+		"validations": "",
+		"searchable": false,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+	{
+		"name": "admin_hierarchy_id",
+		"dbType": "bigInteger:unsigned:foreign,admin_hierarchies,id",
+		"htmlType": "",
+		"validations": "",
+		"searchable": false,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	}
+]

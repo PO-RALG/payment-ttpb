@@ -1,0 +1,116 @@
+[
+
+	{
+		"name": "id",
+		"dbType": "increments",
+		"htmlType": "",
+		"validations": "",
+		"searchable": true,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+    {
+		"name": "user_id",
+		"dbType": "integer:unsigned:foreign,users,id",
+        "relation": "mt1,users,user_id,id",
+		"htmlType": "",
+		"validations": "",
+		"searchable": false,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+
+     {
+		"name": "role_id",
+		"dbType": "integer:unsigned:foreign,roles,id",
+        "relation": "mt1,roles,role_id,id",
+		"htmlType": "",
+		"validations": "",
+		"searchable": false,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+    {
+		"name": "assigned_by_user_id",
+		"dbType": "integer:unsigned:foreign,users,id",
+        "relation": "mt1,users,assigned_by_user_id,id",
+		"htmlType": "",
+		"validations": "",
+		"searchable": true,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+    {
+		"name": "assigned_at",
+		"dbType": "timestamp",
+		"htmlType": "",
+		"validations": "",
+		"searchable": true,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+    	{
+		"name": "created_at",
+		"dbType": "timestamp",
+		"htmlType": "",
+		"validations": "",
+		"searchable": true,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": true
+	},
+	{
+		"name": "updated_at",
+		"dbType": "timestamp",
+		"htmlType": "",
+		"validations": "",
+		"searchable": true,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+	{
+		"name": "created_by",
+		"dbType": "string",
+		"htmlType": "",
+		"validations": "",
+		"searchable": true,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+	{
+		"name": "updated_by",
+		"dbType": "string",
+		"htmlType": "",
+		"validations": "",
+		"searchable": true,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	}
+
+]

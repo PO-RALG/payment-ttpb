@@ -1,0 +1,110 @@
+[
+	{
+		"name": "id",
+		"dbType": "increments",
+		"htmlType": "",
+		"validations": "",
+		"searchable": false,
+		"fillable": false,
+		"primary": true,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+	{
+		"name": "code",
+		"dbType": "string,50",
+		"htmlType": "",
+		"validations": "required|unique:admin_hierarchy_levels",
+		"searchable": true,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+	{
+		"name": "name",
+		"dbType": "string,50",
+		"htmlType": "",
+		"validations": "required|unique:admin_hierarchy_levels",
+		"searchable": true,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+	{
+		"name": "position",
+		"dbType": "integer",
+		"htmlType": "",
+		"validations": "required",
+		"searchable": false,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+    {
+        "name": "active",
+        "dbType": "boolean",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false,
+        "inView": false
+    },
+    {
+		"name": "created_at",
+		"dbType": "timestamp",
+		"htmlType": null,
+		"validations": null,
+		"searchable": false,
+		"fillable": false,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": true
+	},
+	{
+		"name": "updated_at",
+		"dbType": "timestamp",
+		"htmlType": null,
+		"validations": null,
+		"searchable": false,
+		"fillable": false,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": true
+	},
+	{
+		"name": "created_by",
+		"dbType": "string",
+		"htmlType": "",
+		"validations": "required",
+		"searchable": false,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+	{
+		"name": "updated_by",
+		"dbType": "string",
+		"htmlType": "",
+		"validations": "required",
+		"searchable": false,
+		"fillable": true,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	}
+]

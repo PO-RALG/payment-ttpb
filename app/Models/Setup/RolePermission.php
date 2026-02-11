@@ -29,12 +29,12 @@ class RolePermission extends Model
 
     public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\Setup\roles::class, 'role_id', 'id');
+        return $this->belongsTo(\App\Models\Setup\Roles::class, 'role_id', 'id');
     }
 
     public function permission(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\Setup\permissions::class, 'permission_id', 'id');
+        return $this->belongsTo(\App\Models\Setup\Permissions::class, 'permission_id', 'id');
     }
 
 }

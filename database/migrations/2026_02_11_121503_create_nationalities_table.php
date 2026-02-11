@@ -17,12 +17,12 @@ return new class extends Migration
         Schema::create('nationalities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code');
-            $table->string('iso3_code');
-            $table->string('phone_code');
+            $table->string('iso3_code')->nullable();
+            $table->string('phone_code')->nullable();
             $table->string('name');
-            $table->boolean('is_active');
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->boolean('is_active')->default(true);
+            $table->string('created_by')->nullable();;
+            $table->string('updated_by')->nullable();;
             $table->timestamps();
             $table->softDeletes();  
         });

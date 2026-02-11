@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\V1\HealthAPIController;
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
     Route::get('/health', HealthAPIController::class);
@@ -48,3 +48,6 @@ Route::resource('setup/role-permissions', App\Http\Controllers\API\Setup\RolePer
         'update' => 'setup.rolePermissions.update',
         'destroy' => 'setup.rolePermissions.destroy'
     ]);
+
+Route::resource('designations', \App\Http\Controllers\API\Setup\DesignationAPIController::class)
+    ->except(['create', 'edit']);

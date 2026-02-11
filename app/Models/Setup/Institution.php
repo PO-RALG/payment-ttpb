@@ -20,8 +20,7 @@ class Institution extends Model
         'ward',
         'address',
         'website',
-        'status',
-        'active'
+        'status'
     ];
 
     protected $casts = [

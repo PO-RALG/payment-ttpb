@@ -12,7 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->alias([
+            'audit.columns' => \App\Http\Middleware\ApplyAuditColumns::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

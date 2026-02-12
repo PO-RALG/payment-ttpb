@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Setup\AdminHierarchy;
+use App\Models\Setup\Gender;
 use App\Models\Setup\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -21,8 +23,12 @@ class User extends Authenticatable
         'middle_name',
         'last_name',
         'email',
+        'date_of_birth',
+        'gender_id',
         'phone',
         'admin_hierarchy_id',
+        'post_code',
+        'physical_address',
         'password',
     ];
 
@@ -38,6 +44,9 @@ class User extends Authenticatable
      * Attribute casting
      */
     protected $casts = [
+        'date_of_birth' => 'date',
+        'gender_id' => 'integer',
+        'admin_hierarchy_id' => 'integer',
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
@@ -61,5 +70,15 @@ class User extends Authenticatable
             ->withPivot(['assigned_at', 'assigned_by_user_id'])
             ->wherePivotNull('deleted_at')
             ->whereNull('roles.deleted_at');
+    }
+
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class);
+    }
+
+    public function adminHierarchy()
+    {
+        return $this->belongsTo(AdminHierarchy::class);
     }
 }

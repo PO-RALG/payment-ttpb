@@ -1,6 +1,6 @@
-# TTPB Backend API
+# TMIS Backend API
 
-Backend services for Tanzania Teachers Professional Board (TTPB). This document outlines the minimum setup steps every developer should follow before contributing.
+Backend services for TMIS. This document outlines the minimum setup steps every developer should follow before contributing.
 
 ## Prerequisites
 

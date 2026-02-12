@@ -9,7 +9,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            
+        $table->id();
 
             // Names
             $table->string('first_name', 100);
@@ -19,7 +20,8 @@ return new class extends Migration
             // Date type
             $table->date('date_of_birth')->nullable();
 
-            // FK later
+            // FK 
+
             $table->unsignedBigInteger('gender_id')->nullable();
             $table->unsignedBigInteger('admin_hierarchy_id'); // required? keep as required, or nullable if you want
 

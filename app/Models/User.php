@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Setup\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * Mass assignable attributes
@@ -19,6 +22,7 @@ class User extends Authenticatable
         'last_name',
         'email',
         'phone',
+        'admin_hierarchy_id',
         'password',
     ];
 
@@ -48,5 +52,14 @@ class User extends Authenticatable
             ($this->middle_name ? $this->middle_name . ' ' : '') .
             $this->last_name
         );
+    }
+
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class, 'user_roles')
+            ->withTimestamps()
+            ->withPivot(['assigned_at', 'assigned_by_user_id'])
+            ->wherePivotNull('deleted_at')
+            ->whereNull('roles.deleted_at');
     }
 }

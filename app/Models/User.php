@@ -27,9 +27,12 @@ class User extends Authenticatable
         'gender_id',
         'phone',
         'admin_hierarchy_id',
+        'is_active',
         'post_code',
         'physical_address',
         'password',
+        'first_login_at',
+        'must_change_password',
     ];
 
     /**
@@ -47,8 +50,16 @@ class User extends Authenticatable
         'date_of_birth' => 'date',
         'gender_id' => 'integer',
         'admin_hierarchy_id' => 'integer',
+        'is_active' => 'boolean',
         'email_verified_at' => 'datetime',
+        'first_login_at' => 'datetime',
+        'must_change_password' => 'boolean',
         'password' => 'hashed',
+    ];
+
+    protected $attributes = [
+        'is_active' => true,
+        'must_change_password' => true,
     ];
 
     /**

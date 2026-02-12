@@ -60,6 +60,7 @@ Route::middleware(['auth:sanctum', 'audit.columns'])->group(function () {
             'update' => 'setup.rolePermissions.update',
             'destroy' => 'setup.rolePermissions.destroy'
         ]);
+    Route::post('roles/assign-permissions', [\App\Http\Controllers\API\Setup\RolePermissionAPIController::class, 'assignPermissions']);
 
     Route::resource('designations', \App\Http\Controllers\API\Setup\DesignationAPIController::class)
         ->except(['create', 'edit']);

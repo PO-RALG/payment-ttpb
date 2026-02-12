@@ -84,7 +84,8 @@ class RolePermissionAPIController extends Controller
             'data' => $rolePermission,
             'message' => 'Role Permission saved successfully'
         ]);
-            }
+    
+        }
 
     /**
      * Display the specified RolePermission.

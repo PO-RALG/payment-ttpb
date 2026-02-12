@@ -127,10 +127,8 @@ class AuthController extends Controller
         return response()->json([
             'message' => $active ? 'User reactivated successfully.' : 'User deactivated successfully.',
             'data' => [
-                'first_name' => $user->first_name,
-                'middle_name' => $user->middle_name,
-                'last_name' => $user->last_name,
-                'is_active' => $user->is_active,
+            'user_name' => trim($user->first_name . ' ' . ($user->middle_name ? $user->middle_name . ' ' : '') . $user->last_name),
+            'is_active' => $user->is_active,
             ],
         ]);
     }
@@ -149,7 +147,7 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Password reset successfully.',
             'data' => [
-                'user_id' => $user->id,
+                'user_name' => trim($user->first_name . ' ' . ($user->middle_name ? $user->middle_name . ' ' : '') . $user->last_name),
                 'temporary_password' => $temporaryPassword,
             ],
         ]);

@@ -20,7 +20,7 @@ class DemoUserSeeder extends Seeder
         );
 
         User::updateOrCreate(
-            ['email' => 'demo@ttpb.local'],
+            ['email' => 'demo@ttpb.go.tz'],
             [
                 'first_name' => 'Demo',
                 'middle_name' => 'QA',

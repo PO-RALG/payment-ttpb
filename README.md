@@ -13,8 +13,8 @@ Backend services for TMIS. This document outlines the minimum setup steps every 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/PO-RALG/ttpb-api.git
-   cd ttpb-api/ttpb-backend
+   git clone https://github.com/PO-RALG/tims-api.git
+   cd tims-api/ttpb-backend
    ```
 
 2. **Install dependencies**

@@ -9,5 +9,12 @@ use OpenApi\Attributes as OA;
     title: "Tanzania Teacher Registration Board API",
     description: "Backend API documentation"
 )]
-#[OA\Server(url: "/api/v1", description: "API v1")]
+#[OA\Server(url: "/", description: "Base API path")]
+#[OA\SecurityScheme(
+    securityScheme: "sanctum",
+    type: "http",
+    scheme: "bearer",
+    bearerFormat: "Token",
+    description: "Provide the Sanctum-issued bearer token."
+)]
 class OpenApi {}

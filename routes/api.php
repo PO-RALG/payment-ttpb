@@ -11,7 +11,13 @@ Route::prefix('v1')->group(function () {
 Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('logout', [AuthController::class, 'logout']);
+        Route::post('users', [AuthController::class, 'storeUser']);
+        Route::post('users/{user}/deactivate', [AuthController::class, 'deactivateUser']);
+        Route::post('users/{user}/reset-password', [AuthController::class, 'resetUserPassword']);
+        Route::post('change-password', [AuthController::class, 'changePassword']);
+    });
 });
 
 Route::middleware(['auth:sanctum', 'audit.columns'])->group(function () {
@@ -54,6 +60,7 @@ Route::middleware(['auth:sanctum', 'audit.columns'])->group(function () {
             'update' => 'setup.rolePermissions.update',
             'destroy' => 'setup.rolePermissions.destroy'
         ]);
+    Route::post('roles/assign-permissions', [\App\Http\Controllers\API\Setup\RolePermissionAPIController::class, 'assignPermissions']);
 
     Route::resource('designations', \App\Http\Controllers\API\Setup\DesignationAPIController::class)
         ->except(['create', 'edit']);
@@ -100,5 +107,3 @@ Route::middleware(['auth:sanctum', 'audit.columns'])->group(function () {
         Route::resource('nationalities', App\Http\Controllers\API\NationalityAPIController::class)
     ->except(['create', 'edit']);
 });
-
-

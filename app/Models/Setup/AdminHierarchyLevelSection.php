@@ -31,7 +31,7 @@ class AdminHierarchyLevelSection extends Model
 
     public function section(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\Section::class, 'section_id', 'id');
+        return $this->belongsTo(\App\Models\Setup\Section::class, 'section_id', 'id');
     }
 
 }

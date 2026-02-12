@@ -110,3 +110,7 @@ Route::resource('user-roles', \App\Http\Controllers\API\Setup\UserRoleAPIControl
 
 Route::resource('institutions', \App\Http\Controllers\API\Setup\InstitutionAPIController::class)
     ->except(['create', 'edit']);
+
+
+Route::resource('sections', \App\Http\Controllers\API\Setup\SectionAPIController::class)
+    ->except(['create', 'edit']);

@@ -13,10 +13,12 @@ class AssignRolePermissionsRequest extends FormRequest
 
     public function rules(): array
     {
+        $intMax = 2147483647;
+
         return [
-            'role_id' => ['required', 'integer', 'exists:roles,id'],
-            'permissions' => ['required', 'array'],
-            'permissions.*' => ['integer', 'exists:permissions,id'],
+            'role_id' => ['bail', 'required', 'integer', 'min:1', 'max:' . $intMax, 'exists:roles,id'],
+            'permissions' => ['required', 'array', 'min:1'],
+            'permissions.*' => ['bail', 'integer', 'min:1', 'max:' . $intMax, 'exists:permissions,id'],
         ];
     }
 }

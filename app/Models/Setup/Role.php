@@ -41,6 +41,7 @@ class Role extends Model
             ->withTimestamps()
             ->withPivot(['created_by', 'updated_by', 'deleted_at'])
             ->wherePivotNull('deleted_at')
-            ->whereNull('permissions.deleted_at');
+            ->whereNull('permissions.deleted_at')
+            ->select('permissions.id', 'permissions.name', 'permissions.code');
     }
 }

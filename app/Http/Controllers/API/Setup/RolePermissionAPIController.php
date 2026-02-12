@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\API\Setup;
 
+use App\Http\Requests\API\AssignRolePermissionsRequest;
 use App\Http\Requests\API\Setup\CreateRolePermissionAPIRequest;
 use App\Http\Requests\API\Setup\UpdateRolePermissionAPIRequest;
+use App\Models\Setup\Role;
 use App\Models\Setup\RolePermission;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -162,4 +164,32 @@ class RolePermissionAPIController extends Controller
             'message' => 'Role Permission deleted successfully'
         ]);
             }
+
+    public function assignPermissions(AssignRolePermissionsRequest $request): JsonResponse
+    {
+        $data = $request->validated();
+        $role = Role::findOrFail($data['role_id']);
+        $permissionIds = collect($data['permissions'])->filter()->unique()->values();
+
+        $actor = (string) ($request->user()?->id ?? 'system');
+
+        $role->permissions()->sync(
+            $permissionIds->mapWithKeys(fn ($permissionId) => [
+                $permissionId => [
+                    'created_by' => $actor,
+                    'updated_by' => $actor,
+                    'active' => true,
+                ],
+            ])->all()
+        );
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Permissions assigned successfully.',
+            'data' => [
+                'role_id' => $role->id,
+                'permissions' => $role->permissions()->pluck('id'),
+            ],
+        ]);
+    }
 }

@@ -104,6 +104,6 @@ Route::middleware(['auth:sanctum', 'audit.columns'])->group(function () {
     Route::resource('user-roles', \App\Http\Controllers\API\Setup\UserRoleAPIController::class)
         ->except(['create', 'edit']);
 
-        Route::resource('nationalities', App\Http\Controllers\API\NationalityAPIController::class)
-    ->except(['create', 'edit']);
+        Route::resource('nationalities', App\Http\Controllers\API\Setup\NationalityAPIController::class)
+            ->except(['create', 'edit']);
 });

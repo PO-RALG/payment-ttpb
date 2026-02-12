@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'rest_countries' => [
+        'skip_ssl_verification' => env('REST_COUNTRIES_SKIP_SSL', false),
+    ],
+
 ];

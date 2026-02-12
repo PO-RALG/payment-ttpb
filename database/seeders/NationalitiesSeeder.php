@@ -11,7 +11,13 @@ class NationalitiesSeeder extends Seeder
 {
     public function run(): void
     {
-        $response = Http::timeout(30)->get(
+        $client = Http::timeout(30);
+
+        if (config('services.rest_countries.skip_ssl_verification', false)) {
+            $client = $client->withoutVerifying();
+        }
+
+        $response = $client->get(
             'https://restcountries.com/v3.1/all',
             ['fields' => 'cca2,cca3,idd,name,demonyms']
         );

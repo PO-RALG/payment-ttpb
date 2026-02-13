@@ -33,6 +33,11 @@ Route::middleware(['auth:sanctum', 'audit.columns'])->group(function () {
         ->name('admin_areas.by_level');
     Route::get('admin_areas_children/{id?}', [AdminAreaAPIController::class, 'withChildren'])
         ->name('admin_areas.with_children');
+    // Backward-compatible aliases for clients that resolve this endpoint by legacy route-name strings.
+    Route::get('admin_areas_children/{id?}', [AdminAreaAPIController::class, 'withChildren'])
+        ->name('api/admin_areas_children');
+    Route::get('admin_areas_children/{id?}', [AdminAreaAPIController::class, 'withChildren'])
+        ->name('api/api/admin_areas_children');
 
     Route::resource('setup/roles', App\Http\Controllers\API\Setup\RoleAPIController::class)
         ->except(['create', 'edit'])

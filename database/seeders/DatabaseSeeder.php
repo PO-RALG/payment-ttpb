@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
             NationalitiesSeeder::class,
             InstitutionsSeeder::class,
             DefaultRoleSeeder::class,
-            DemoUserSeeder::class,
             SuperAdminSeeder::class,
+            DemoUserSeeder::class,
         ]);
     }
 }

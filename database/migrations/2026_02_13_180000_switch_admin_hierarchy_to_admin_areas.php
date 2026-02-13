@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -23,22 +24,30 @@ return new class extends Migration
         }
 
         if (Schema::hasTable('users') && Schema::hasColumn('users', 'admin_area_id')) {
-            Schema::table('users', function (Blueprint $table) {
-                try {
-                    $table->index('admin_area_id');
-                } catch (\Throwable $e) {
-                    // Index may already exist.
-                }
-
-                try {
+            if (DB::getDriverName() === 'pgsql') {
+                DB::statement('CREATE INDEX IF NOT EXISTS users_admin_area_id_index ON users (admin_area_id)');
+                DB::statement(<<<'SQL'
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pg_constraint
+        WHERE conname = 'users_admin_area_id_foreign'
+    ) THEN
+        ALTER TABLE users
+        ADD CONSTRAINT users_admin_area_id_foreign
+        FOREIGN KEY (admin_area_id) REFERENCES admin_areas(id) ON DELETE SET NULL;
+    END IF;
+END $$;
+SQL);
+            } else {
+                Schema::table('users', function (Blueprint $table) {
                     $table->foreign('admin_area_id')
                         ->references('id')
                         ->on('admin_areas')
                         ->nullOnDelete();
-                } catch (\Throwable $e) {
-                    // Foreign key may already exist.
-                }
-            });
+                });
+            }
         }
 
         Schema::dropIfExists('admin_hierarchies');

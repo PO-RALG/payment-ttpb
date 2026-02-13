@@ -3,36 +3,24 @@
 namespace Database\Seeders;
 
 use App\Models\Setup\AdminHierarchy;
+use App\Models\Setup\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use RuntimeException;
 
 class DemoUserSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('admin_area_levels')->updateOrInsert(
-            ['id' => 1],
-            [
-                'name' => 'National',
-                'name_sw' => 'Taifa',
-                'order_id' => 1,
-                'updated_at' => now(),
-                'deleted_at' => null,
-            ]
-        );
+        $adminHierarchy = AdminHierarchy::query()
+            ->find(392);
 
-        $adminHierarchy = AdminHierarchy::query()->firstOrCreate(
-            ['area_code' => 'HQ'],
-            [
-                'name' => 'Headquarters',
-                'area_type_id' => 1,
-                'retired' => false,
-            ]
-        );
+        if (! $adminHierarchy) {
+            throw new RuntimeException('Admin area with id 392 was not found. Seed admin data first.');
+        }
 
-        User::updateOrCreate(
+        $user = User::updateOrCreate(
             ['email' => 'demo@ttpb.go.tz'],
             [
                 'first_name' => 'Demo',
@@ -43,5 +31,18 @@ class DemoUserSeeder extends Seeder
                 'password' => Hash::make('ChangeMe123!'),
             ]
         );
+
+        $superAdminRole = Role::query()->where('code', 'SUPER_ADMIN')->first();
+        if ($superAdminRole) {
+            $user->roles()->syncWithoutDetaching([
+                $superAdminRole->id => [
+                    'assigned_at' => now(),
+                    'assigned_by_user_id' => $user->id,
+                    'created_by' => 'seeder',
+                    'updated_by' => 'seeder',
+                    'active' => true,
+                ],
+            ]);
+        }
     }
 }

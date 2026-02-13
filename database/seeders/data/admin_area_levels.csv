@@ -1,0 +1,12 @@
+id,name,name_sw,order_id
+"1","Country","Nchi","1"
+"2","Region","Mkoa","2"
+"3","Council","Halmashauri","5"
+"4","Ward","Kata","9"
+"5","School","School","20"
+"6","Division","Tarafa","7"
+"7","Township Authority","Mamlaka ya Mji Mdogo","8"
+"9","Village/Mtaa","Kijiji/Mtaa","10"
+"10","Kitongoji","Kitongoji","11"
+"11","Mega City Council","Halmashauri la Jiji Kubwa","3"
+"20","District","Wilaya","4"

@@ -1,5 +1,5 @@
 id,name,parent_area_id,description,boundary_id,valid_from,valid_until,area_type_id,created_on,created_by_user_id,updated_on,updated_by_user_id,boundary_status_id,retired,label,area_short_name,area_hq_id,area_code,establishment_date_approximated,mof_code,created_at,updated_at,deleted_at,ares_code
-"392","Tanzania",,,,,,"1","2024-10-25 07:08:15.511+03",,,,,"f",,,,,"f",,"2024-10-25 04:08:15","2024-10-25 04:08:15",,
+"392","TTPB HQ",,,,,,"1","2024-10-25 07:08:15.511+03",,,,,"f",,,,,"f",,"2024-10-25 04:08:15","2024-10-25 04:08:15",,
 "3849","Arusha","392",,,,,"2","2024-10-25 07:08:15.557+03",,,,,"f",,,,"01000001","f",,"2024-10-25 04:08:15","2024-10-25 04:08:15",,"01000001"
 "3850","Dar es Salaam","392",,,,,"2","2024-10-25 07:08:15.57+03",,,,,"f",,,,"01000002","f",,"2024-10-25 04:08:15","2024-10-25 04:08:15",,"01000002"
 "3851","Dodoma","392",,,,,"2","2024-10-25 07:08:15.583+03",,,,,"f",,,,"01000003","f",,"2024-10-25 04:08:15","2024-10-25 04:08:15",,"01000003"

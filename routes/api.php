@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AdminAreaAPIController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\V1\HealthAPIController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,14 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::middleware(['auth:sanctum', 'audit.columns'])->group(function () {
+    // Specific routes should come before resource routes
+    Route::get('admin_areas/wards', [AdminAreaAPIController::class, 'getWards'])
+        ->name('admin_areas.wards');
+    Route::get('admin_areas/by_level/{levelId}', [AdminAreaAPIController::class, 'getByLevel'])
+        ->name('admin_areas.by_level');
+    Route::get('admin_areas_children/{id?}', [AdminAreaAPIController::class, 'withChildren'])
+        ->name('admin_areas.with_children');
+
     Route::resource('setup/roles', App\Http\Controllers\API\Setup\RoleAPIController::class)
         ->except(['create', 'edit'])
         ->names([

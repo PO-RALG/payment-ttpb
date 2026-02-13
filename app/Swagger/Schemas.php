@@ -79,4 +79,32 @@ use OpenApi\Attributes as OA;
         new OA\Property(property: "user", ref: "#/components/schemas/UserResource"),
     ]
 )]
+#[OA\Schema(
+    schema: "AdminAreaLevelResource",
+    required: ["id", "name"],
+    properties: [
+        new OA\Property(property: "id", type: "integer", example: 4),
+        new OA\Property(property: "name", type: "string", example: "Ward"),
+        new OA\Property(property: "name_sw", type: "string", example: "Kata", nullable: true),
+        new OA\Property(property: "order_id", type: "integer", example: 9, nullable: true),
+    ]
+)]
+#[OA\Schema(
+    schema: "AdminAreaResource",
+    required: ["id", "name", "area_type_id"],
+    properties: [
+        new OA\Property(property: "id", type: "integer", example: 4086),
+        new OA\Property(property: "name", type: "string", example: "Terrat"),
+        new OA\Property(property: "parent_area_id", type: "integer", nullable: true, example: 4032),
+        new OA\Property(property: "area_type_id", type: "integer", example: 4),
+        new OA\Property(property: "display_name", type: "string", nullable: true, example: "Terrat - Simanjiro - Manyara"),
+        new OA\Property(property: "level", ref: "#/components/schemas/AdminAreaLevelResource", nullable: true),
+        new OA\Property(
+            property: "children",
+            type: "array",
+            nullable: true,
+            items: new OA\Items(ref: "#/components/schemas/AdminAreaResource")
+        ),
+    ]
+)]
 class Schemas {}

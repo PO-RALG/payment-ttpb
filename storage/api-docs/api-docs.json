@@ -12,6 +12,151 @@
         }
     ],
     "paths": {
+        "/api/admin_areas/wards": {
+            "get": {
+                "tags": [
+                    "Admin Areas"
+                ],
+                "summary": "List wards with hierarchical labels",
+                "operationId": "b94ec6a42208eec9ef2d56524986dde4",
+                "responses": {
+                    "200": {
+                        "description": "Wards retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Wards with hierarchical names retrieved successfully."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/AdminAreaResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/admin_areas/by_level/{levelId}": {
+            "get": {
+                "tags": [
+                    "Admin Areas"
+                ],
+                "summary": "List areas filtered by level",
+                "operationId": "d3013a1f26e2f09976c705b8461b3ff1",
+                "parameters": [
+                    {
+                        "name": "levelId",
+                        "in": "path",
+                        "description": "Admin area level identifier (e.g., 4 for wards)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Admin areas retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Admin areas by level retrieved successfully."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/AdminAreaResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/admin_areas_children/{id}": {
+            "get": {
+                "tags": [
+                    "Admin Areas"
+                ],
+                "summary": "Retrieve an admin area with its immediate children",
+                "operationId": "866fa8718abcf87839b4ca9f9b1d9e3a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Admin area id; if omitted, the authenticated user's default area is used",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Admin area retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Admin area retrieved successfully."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/AdminAreaResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/auth/login": {
             "post": {
                 "tags": [
@@ -4309,6 +4454,80 @@
                     }
                 },
                 "type": "object"
+            },
+            "AdminAreaLevelResource": {
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 4
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Ward"
+                    },
+                    "name_sw": {
+                        "type": "string",
+                        "example": "Kata",
+                        "nullable": true
+                    },
+                    "order_id": {
+                        "type": "integer",
+                        "example": 9,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "AdminAreaResource": {
+                "required": [
+                    "id",
+                    "name",
+                    "area_type_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 4086
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Terrat"
+                    },
+                    "parent_area_id": {
+                        "type": "integer",
+                        "example": 4032,
+                        "nullable": true
+                    },
+                    "area_type_id": {
+                        "type": "integer",
+                        "example": 4
+                    },
+                    "display_name": {
+                        "type": "string",
+                        "example": "Terrat - Simanjiro - Manyara",
+                        "nullable": true
+                    },
+                    "level": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/AdminAreaLevelResource"
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "children": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AdminAreaResource"
+                        },
+                        "nullable": true
+                    }
+                },
+                "type": "object"
             }
         },
         "securitySchemes": {
@@ -4321,6 +4540,10 @@
         }
     },
     "tags": [
+        {
+            "name": "Admin Areas",
+            "description": "Admin Areas"
+        },
         {
             "name": "Auth",
             "description": "Auth"

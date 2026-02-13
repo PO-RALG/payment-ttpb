@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('website');
             $table->bigInteger('created_by_user_id');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
             $table->softDeletes();  
         });

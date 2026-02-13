@@ -9,8 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-
-        $table->id();
+            $table->id();
 
             // Names
             $table->string('first_name', 100);
@@ -23,7 +22,10 @@ return new class extends Migration
             // FK
 
             $table->unsignedBigInteger('gender_id')->nullable();
+            $table->unsignedBigInteger('nationality_id')->nullable();
+            $table->string('nin', 50)->nullable()->unique();
             $table->unsignedBigInteger('admin_area_id');
+            $table->boolean('is_active')->default(true);
 
             // Contacts
             $table->string('email', 150)->unique();
@@ -35,14 +37,18 @@ return new class extends Migration
 
             // Auth
             $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('phone_verified_at')->nullable();
             $table->string('password');
 
             $table->rememberToken();
+            $table->timestamp('first_login_at')->nullable();
+            $table->boolean('must_change_password')->default(true);
             $table->timestamps();
 
             // Helpful indexes
             $table->index(['last_name', 'first_name']);
             $table->index('gender_id');
+            $table->index('nationality_id');
             $table->index('admin_area_id');
         });
 

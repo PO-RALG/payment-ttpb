@@ -14,14 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admin_hierarchies', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 50);
-            $table->string('code', 10);
-            $table->boolean('active');
-            $table->timestamps();
-            $table->softDeletes();  
-        });
+        // Deprecated in favor of admin_areas.
     }
 
     /**
@@ -31,6 +24,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::drop('admin_hierarchies');
+        //
     }
 };

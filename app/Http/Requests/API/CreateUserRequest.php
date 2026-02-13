@@ -19,7 +19,7 @@ class CreateUserRequest extends FormRequest
             'last_name' => ['required', 'string', 'max:100'],
             'date_of_birth' => ['nullable', 'date'],
             'gender_id' => ['nullable', 'integer', 'exists:genders,id'],
-            'admin_hierarchy_id' => ['required', 'integer', 'exists:admin_hierarchies,id'],
+            'admin_area_id' => ['required', 'integer', 'exists:admin_areas,id'],
             'email' => ['required', 'email', 'max:150', 'unique:users,email'],
             'phone' => ['required', 'string', 'max:30', 'unique:users,phone'],
             'post_code' => ['nullable', 'string', 'max:20'],

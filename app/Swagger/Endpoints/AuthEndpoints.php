@@ -66,14 +66,14 @@ class AuthEndpoints
         requestBody: new OA\RequestBody(
             required: true,
             content: new OA\JsonContent(
-                required: ["first_name", "last_name", "admin_hierarchy_id", "email", "phone"],
+                required: ["first_name", "last_name", "admin_area_id", "email", "phone"],
                 properties: [
                     new OA\Property(property: "first_name", type: "string"),
                     new OA\Property(property: "middle_name", type: "string", nullable: true),
                     new OA\Property(property: "last_name", type: "string"),
                     new OA\Property(property: "date_of_birth", type: "string", format: "date", nullable: true),
                     new OA\Property(property: "gender_id", type: "integer", nullable: true),
-                    new OA\Property(property: "admin_hierarchy_id", type: "integer"),
+                    new OA\Property(property: "admin_area_id", type: "integer"),
                     new OA\Property(property: "email", type: "string", format: "email"),
                     new OA\Property(property: "phone", type: "string"),
                     new OA\Property(

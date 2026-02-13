@@ -24,8 +24,6 @@ class UpdateAdminHierarchyAPIRequest extends APIRequest
      */
     public function rules()
     {
-        $rules = AdminHierarchy::$rules;
-        $rules['name'] = $rules['name'].",".$this->route("admin_hierarchy");$rules['code'] = $rules['code'].",".$this->route("admin_hierarchy");
-        return $rules;
+        return AdminHierarchy::$rules;
     }
 }

@@ -69,7 +69,7 @@ Route::middleware(['auth:sanctum', 'audit.columns'])->group(function () {
     Route::resource('designations', \App\Http\Controllers\API\Setup\DesignationAPIController::class)
         ->except(['create', 'edit']);
 
-    Route::resource('admin-hierarchies', \App\Http\Controllers\API\Setup\AdminHierarchyAPIController::class)
+    Route::resource('admin-areas', \App\Http\Controllers\API\Setup\AdminHierarchyAPIController::class)
         ->except(['create', 'edit']);
 
     Route::resource('admin-hierarchy-level-sections', \App\Http\Controllers\API\Setup\AdminHierarchyLevelSectionAPIController::class)

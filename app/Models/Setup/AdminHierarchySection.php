@@ -34,7 +34,7 @@ class AdminHierarchySection extends Model
 
     public function adminHierarchy(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(\App\Models\Setup\AdminHierarchy::class, 'admin_hierarchy_id', 'id');
+        return $this->belongsTo(\App\Models\Setup\AdminHierarchy::class, 'admin_area_id', 'id');
     }
 
 }

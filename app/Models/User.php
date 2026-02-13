@@ -33,7 +33,7 @@ class User extends Authenticatable
         'nationality_id',
         'nin',
         'phone',
-        'admin_hierarchy_id',
+        'admin_area_id',
         'is_active',
         'post_code',
         'physical_address',
@@ -57,7 +57,7 @@ class User extends Authenticatable
         'date_of_birth' => 'date',
         'gender_id' => 'integer',
         'nationality_id' => 'integer',
-        'admin_hierarchy_id' => 'integer',
+        'admin_area_id' => 'integer',
         'is_active' => 'boolean',
         'email_verified_at' => 'datetime',
         'phone_verified_at' => 'datetime',
@@ -104,7 +104,7 @@ class User extends Authenticatable
 
     public function adminHierarchy(): BelongsTo
     {
-        return $this->belongsTo(AdminHierarchy::class);
+        return $this->belongsTo(AdminHierarchy::class, 'admin_area_id');
     }
 
     public function phoneOtps(): HasMany

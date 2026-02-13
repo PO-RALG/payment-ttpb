@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            
+
         $table->id();
 
             // Names
@@ -20,10 +20,10 @@ return new class extends Migration
             // Date type
             $table->date('date_of_birth')->nullable();
 
-            // FK 
+            // FK
 
             $table->unsignedBigInteger('gender_id')->nullable();
-            $table->unsignedBigInteger('admin_hierarchy_id'); // required? keep as required, or nullable if you want
+            $table->unsignedBigInteger('admin_area_id');
 
             // Contacts
             $table->string('email', 150)->unique();
@@ -43,7 +43,7 @@ return new class extends Migration
             // Helpful indexes
             $table->index(['last_name', 'first_name']);
             $table->index('gender_id');
-            $table->index('admin_hierarchy_id');
+            $table->index('admin_area_id');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

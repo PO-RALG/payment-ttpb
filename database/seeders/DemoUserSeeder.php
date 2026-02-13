@@ -25,7 +25,7 @@ class DemoUserSeeder extends Seeder
                 'first_name' => 'Demo',
                 'middle_name' => 'QA',
                 'last_name' => 'User',
-                'phone' => '255700000000',
+                'phone' => '255700000020',
                 'admin_hierarchy_id' => $adminHierarchy->id,
                 'password' => Hash::make('ChangeMe123!'),
             ]

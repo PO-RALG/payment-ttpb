@@ -107,9 +107,6 @@ Route::middleware(['auth:sanctum', 'audit.columns'])->group(function () {
     Route::resource('licence-categories', \App\Http\Controllers\API\Setup\LicenceCategoryAPIController::class)
         ->except(['create', 'edit']);
 
-    Route::resource('organization-types', \App\Http\Controllers\API\Setup\OrganizationTypeAPIController::class)
-        ->except(['create', 'edit']);
-
     Route::resource('organization-units', \App\Http\Controllers\API\Setup\OrganizationUnitAPIController::class)
         ->except(['create', 'edit']);
 

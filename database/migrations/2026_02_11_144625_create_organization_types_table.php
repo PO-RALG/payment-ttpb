@@ -14,15 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('organization_types', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('code');
-            $table->string('name');
-            $table->string('created_by');
-            $table->string('updated_by');
-            $table->timestamps();
-            $table->softDeletes();  
-        });
+        // Deprecated. Organization types removed.
     }
 
     /**
@@ -32,6 +24,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::drop('organization_types');
+        //
     }
 };

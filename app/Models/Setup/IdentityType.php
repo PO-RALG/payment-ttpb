@@ -33,11 +33,6 @@ class IdentityType extends Model
         'level' => 'required'
     ];
 
-    public function organizationType(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(\App\Models\Setup\OrganizationType::class, 'organization_type_id', 'id');
-    }
-
     public function parent(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(\App\Models\Setup\OrganizationUnit::class, 'parent_id', 'id');

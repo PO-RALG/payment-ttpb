@@ -984,6 +984,45 @@
                                       "response":  [
 
                                                    ]
+                                  },
+                                  {
+                                      "name":  "Admin Areas Children",
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+
+                                                                 ],
+                                                      "url":  "{{base_url}}/admin_areas_children/{{id}}"
+                                                  },
+                                      "response":  [
+
+                                                   ]
+                                  },
+                                  {
+                                      "name":  "Admin Areas Wards",
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+
+                                                                 ],
+                                                      "url":  "{{base_url}}/admin_areas/wards"
+                                                  },
+                                      "response":  [
+
+                                                   ]
+                                  },
+                                  {
+                                      "name":  "Admin Areas By Level",
+                                      "request":  {
+                                                      "method":  "GET",
+                                                      "header":  [
+
+                                                                 ],
+                                                      "url":  "{{base_url}}/admin_areas/by_level/{{levelId}}"
+                                                  },
+                                      "response":  [
+
+                                                   ]
                                   }
                               ]
                  },

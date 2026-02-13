@@ -7,9 +7,14 @@ use App\Http\Requests\API\ChangePasswordRequest;
 use App\Http\Requests\API\CreateUserRequest;
 use App\Http\Requests\API\LoginRequest;
 use App\Http\Requests\API\RefreshTokenRequest;
+use App\Http\Requests\API\RequestEmailOtpRequest;
+use App\Http\Requests\API\RequestPhoneOtpRequest;
+use App\Http\Requests\API\VerifyEmailOtpRequest;
+use App\Http\Requests\API\VerifyPhoneOtpRequest;
 use App\Models\Setup\Permission;
 use App\Models\Setup\Role;
 use App\Models\User;
+use App\Services\OtpService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -20,6 +25,10 @@ use Laravel\Sanctum\PersonalAccessToken;
 
 class AuthController extends Controller
 {
+    public function __construct(private readonly OtpService $otpService)
+    {
+    }
+
     public function login(LoginRequest $request): JsonResponse
     {
         $credentials = $request->validated();
@@ -175,6 +184,108 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Password changed successfully.',
+        ]);
+    }
+
+    public function requestPhoneOtp(RequestPhoneOtpRequest $request): JsonResponse
+    {
+        $user = $request->user();
+
+        if (! $user) {
+            abort(401);
+        }
+
+        $phone = $request->input('phone', $user->phone);
+
+        if (! $phone) {
+            throw ValidationException::withMessages([
+                'phone' => ['Phone number is required for OTP verification.'],
+            ]);
+        }
+
+        $otp = $this->otpService->issuePhoneOtp($user, $phone);
+
+        return response()->json([
+            'message' => 'Phone OTP requested successfully.',
+            'data' => [
+                'phone' => $otp->phone,
+                'expires_in_seconds' => $this->otpService->secondsRemaining($otp->expires_at),
+            ],
+        ]);
+    }
+
+    public function verifyPhoneOtp(VerifyPhoneOtpRequest $request): JsonResponse
+    {
+        $user = $request->user();
+
+        if (! $user) {
+            abort(401);
+        }
+
+        if (! $this->otpService->verifyPhoneOtp($user, $request->input('code'))) {
+            throw ValidationException::withMessages([
+                'code' => ['The OTP code is invalid or has expired.'],
+            ]);
+        }
+
+        $user->refresh();
+
+        return response()->json([
+            'message' => 'Phone number verified successfully.',
+            'data' => [
+                'phone_verified_at' => $user->phone_verified_at,
+            ],
+        ]);
+    }
+
+    public function requestEmailOtp(RequestEmailOtpRequest $request): JsonResponse
+    {
+        $user = $request->user();
+
+        if (! $user) {
+            abort(401);
+        }
+
+        $email = $request->input('email', $user->email);
+
+        if (! $email) {
+            throw ValidationException::withMessages([
+                'email' => ['Email address is required for OTP verification.'],
+            ]);
+        }
+
+        $otp = $this->otpService->issueEmailOtp($user, $email);
+
+        return response()->json([
+            'message' => 'Email OTP requested successfully.',
+            'data' => [
+                'email' => $otp->email,
+                'expires_in_seconds' => $this->otpService->secondsRemaining($otp->expires_at),
+            ],
+        ]);
+    }
+
+    public function verifyEmailOtp(VerifyEmailOtpRequest $request): JsonResponse
+    {
+        $user = $request->user();
+
+        if (! $user) {
+            abort(401);
+        }
+
+        if (! $this->otpService->verifyEmailOtp($user, $request->input('code'))) {
+            throw ValidationException::withMessages([
+                'code' => ['The OTP code is invalid or has expired.'],
+            ]);
+        }
+
+        $user->refresh();
+
+        return response()->json([
+            'message' => 'Email verified successfully.',
+            'data' => [
+                'email_verified_at' => $user->email_verified_at,
+            ],
         ]);
     }
 

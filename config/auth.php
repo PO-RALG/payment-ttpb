@@ -112,4 +112,9 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    'otp' => [
+        'ttl_seconds' => env('OTP_TTL_SECONDS', 300),
+        'mock_code' => env('OTP_MOCK_CODE', '1234'),
+    ],
+
 ];

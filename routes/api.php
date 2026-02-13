@@ -17,6 +17,10 @@ Route::prefix('auth')->group(function () {
         Route::post('users/{user}/deactivate', [AuthController::class, 'deactivateUser']);
         Route::post('users/{user}/reset-password', [AuthController::class, 'resetUserPassword']);
         Route::post('change-password', [AuthController::class, 'changePassword']);
+        Route::post('phone-otp/request', [AuthController::class, 'requestPhoneOtp']);
+        Route::post('phone-otp/verify', [AuthController::class, 'verifyPhoneOtp']);
+        Route::post('email-otp/request', [AuthController::class, 'requestEmailOtp']);
+        Route::post('email-otp/verify', [AuthController::class, 'verifyEmailOtp']);
     });
 });
 

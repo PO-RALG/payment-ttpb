@@ -15,14 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            GendersSeeder::class,
-            AdminAreaLevelsSeeder::class,
-            AdminAreasSeeder::class,
-            NationalitiesSeeder::class,
-            InstitutionsSeeder::class,
-            DefaultRoleSeeder::class,
-            SuperAdminSeeder::class,
-            DemoUserSeeder::class,
+            FeeRulesSeeder::class,
         ]);
     }
 }

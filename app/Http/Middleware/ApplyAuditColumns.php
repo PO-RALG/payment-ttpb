@@ -2,14 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\API\Setup\Concerns\AppliesAuditColumns;
 use Closure;
 use Illuminate\Http\Request;
 
 class ApplyAuditColumns
 {
-    use AppliesAuditColumns;
-
     public function handle(Request $request, Closure $next)
     {
         if ($request->user()) {
@@ -21,5 +18,24 @@ class ApplyAuditColumns
         }
 
         return $next($request);
+    }
+
+    private function applyAuditColumns(array $attributes, bool $isUpdate = false): array
+    {
+        $userId = auth()->id();
+
+        if (! $userId) {
+            return $attributes;
+        }
+
+        if (! $isUpdate && empty($attributes['created_by'])) {
+            $attributes['created_by'] = $userId;
+        }
+
+        if (empty($attributes['updated_by'])) {
+            $attributes['updated_by'] = $userId;
+        }
+
+        return $attributes;
     }
 }

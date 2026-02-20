@@ -289,7 +289,7 @@
                                 "required": [
                                     "first_name",
                                     "last_name",
-                                    "admin_hierarchy_id",
+                                    "admin_area_id",
                                     "email",
                                     "phone"
                                 ],
@@ -313,7 +313,7 @@
                                         "type": "integer",
                                         "nullable": true
                                     },
-                                    "admin_hierarchy_id": {
+                                    "admin_area_id": {
                                         "type": "integer"
                                     },
                                     "email": {
@@ -1923,13 +1923,13 @@
                 ]
             }
         },
-        "/api/admin-hierarchies": {
+        "/api/admin-areas": {
             "get": {
                 "tags": [
-                    "Admin Hierarchies"
+                    "Admin Areas"
                 ],
-                "summary": "List admin hierarchies",
-                "operationId": "89fca2e9e0d8826406f5a8fc5ef1afce",
+                "summary": "List admin areas",
+                "operationId": "f82344dcd3e20440cc3fd869540ea6ca",
                 "responses": {
                     "200": {
                         "description": "List",
@@ -1950,10 +1950,10 @@
             },
             "post": {
                 "tags": [
-                    "Admin Hierarchies"
+                    "Admin Areas"
                 ],
-                "summary": "Create admin hierarchy",
-                "operationId": "e481867aa03a7dcab2c8aa8a12ee99ba",
+                "summary": "Create admin area",
+                "operationId": "f77577b7703d9ad2bff45384937b5df2",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1983,16 +1983,16 @@
                 ]
             }
         },
-        "/api/admin-hierarchies/{admin_hierarchy}": {
+        "/api/admin-areas/{admin_area}": {
             "get": {
                 "tags": [
-                    "Admin Hierarchies"
+                    "Admin Areas"
                 ],
-                "summary": "Show admin hierarchy",
-                "operationId": "ca378cd6762ff5bc54f460c6183377d0",
+                "summary": "Show admin area",
+                "operationId": "7e432a7024dc612df4096efdf8b305ff",
                 "parameters": [
                     {
-                        "name": "admin_hierarchy",
+                        "name": "admin_area",
                         "in": "path",
                         "required": true,
                         "schema": {
@@ -2023,13 +2023,13 @@
             },
             "put": {
                 "tags": [
-                    "Admin Hierarchies"
+                    "Admin Areas"
                 ],
-                "summary": "Update admin hierarchy",
-                "operationId": "fe0287650dc66604af52217b7347734f",
+                "summary": "Update admin area",
+                "operationId": "4e44ead69b69064952ff2d239d5ccc68",
                 "parameters": [
                     {
-                        "name": "admin_hierarchy",
+                        "name": "admin_area",
                         "in": "path",
                         "required": true,
                         "schema": {
@@ -2067,13 +2067,13 @@
             },
             "delete": {
                 "tags": [
-                    "Admin Hierarchies"
+                    "Admin Areas"
                 ],
-                "summary": "Delete admin hierarchy",
-                "operationId": "e7a1942b90098d0a238f72c14fe6644b",
+                "summary": "Delete admin area",
+                "operationId": "c4f27fd8acb507888143e076ede7830b",
                 "parameters": [
                     {
-                        "name": "admin_hierarchy",
+                        "name": "admin_area",
                         "in": "path",
                         "required": true,
                         "schema": {
@@ -3363,186 +3363,6 @@
                 ]
             }
         },
-        "/api/organization-types": {
-            "get": {
-                "tags": [
-                    "Organization Types"
-                ],
-                "summary": "List organization types",
-                "operationId": "d54fa2850038a25ad9e2b5b518bc3353",
-                "responses": {
-                    "200": {
-                        "description": "List",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/PaginatedResponse"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
-            },
-            "post": {
-                "tags": [
-                    "Organization Types"
-                ],
-                "summary": "Create organization type",
-                "operationId": "25f6e99d6c62ba118692a69618fbb050",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Created",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/StandardResponse"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
-            }
-        },
-        "/api/organization-types/{organization_type}": {
-            "get": {
-                "tags": [
-                    "Organization Types"
-                ],
-                "summary": "Show organization type",
-                "operationId": "49923b2e7ee0b1bdb6ef8e3507df01a2",
-                "parameters": [
-                    {
-                        "name": "organization_type",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/StandardResponse"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
-            },
-            "put": {
-                "tags": [
-                    "Organization Types"
-                ],
-                "summary": "Update organization type",
-                "operationId": "eccb4e1c3de01f18ed9b45f56434115a",
-                "parameters": [
-                    {
-                        "name": "organization_type",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Updated",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/StandardResponse"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
-            },
-            "delete": {
-                "tags": [
-                    "Organization Types"
-                ],
-                "summary": "Delete organization type",
-                "operationId": "f415b79646ac918f4846f6e5ec64608a",
-                "parameters": [
-                    {
-                        "name": "organization_type",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Deleted",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/StandardResponse"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
-            }
-        },
         "/api/organization-units": {
             "get": {
                 "tags": [
@@ -4577,10 +4397,6 @@
             "description": "Designations"
         },
         {
-            "name": "Admin Hierarchies",
-            "description": "Admin Hierarchies"
-        },
-        {
             "name": "Admin Hierarchy Level Sections",
             "description": "Admin Hierarchy Level Sections"
         },
@@ -4607,10 +4423,6 @@
         {
             "name": "Licence Categories",
             "description": "Licence Categories"
-        },
-        {
-            "name": "Organization Types",
-            "description": "Organization Types"
         },
         {
             "name": "Organization Units",

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TMIS Backend API
 
 Backend services for TMIS. This document outlines the minimum setup steps every developer should follow before contributing.
@@ -75,3 +76,6 @@ Backend services for TMIS. This document outlines the minimum setup steps every 
 - Run feature tests: `php artisan test`
 
 Keep this README up-to-date when new environment variables or setup steps are introduced.
+=======
+# payment-ttpb
+>>>>>>> f5f572e27a3436c3e78a8187b6bb7e67fe517359
